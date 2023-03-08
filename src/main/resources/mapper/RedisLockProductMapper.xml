@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecut.mapper.RedisLockProductMapper">
+    <update id="updateProduct">
+        update redis_lock_product set product_number = #{productNumber} where id = #{id}
+    </update>
+    <select id="getProductInfo" resultType="com.ecut.model.RedisLockProduct">
+        select * from redis_lock_product where product_id = #{productId}
+    </select>
+</mapper>

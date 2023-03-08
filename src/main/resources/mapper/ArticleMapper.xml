@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecut.mapper.ArticleMapper">
+
+    <insert id="saveArticle" keyProperty="id">
+        insert into article(usernumber,title,content,create_time)
+        values (#{article.usernumber},#{article.title},#{article.content},#{article.createTime})
+    </insert>
+    <select id="searchArticle" resultType="com.ecut.model.Article">
+        select * from article
+        <if test="usernumber != null and usernumber != ''">
+            where usernumber = #{usernumber}
+        </if>
+    </select>
+</mapper>

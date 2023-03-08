@@ -1,0 +1,91 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://1.117.87.146:3306/student?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: 7237d1396c578497
+
+#修改上传文件无限制大小
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+
+  activiti:
+    database-schema-update: true
+    db-history-used: true
+    history-level: full
+    check-process-definitions: true
+
+
+  rabbitmq:
+    virtual-host: /
+    host: 1.117.87.146
+    port: 5672
+    username: newadmin
+    password: newpassword
+  kafka:
+    bootstrap-servers: 1.117.87.146:9092
+
+    consumer:
+      group-id: test-consumer-group
+      enable-auto-commit: true
+      auto-commit-interval: 3000
+#  data:
+#    elasticsearch:
+#      repositories:
+#        enabled: true
+#  elasticsearch:
+#    rest:
+#      uris: http://1.117.87.146:9200
+
+
+mq:
+  env: local
+  basic:
+    info:
+      queue:
+        name: ${mq.env}.middleware.mq.basic.info.queue
+      exchange:
+        name: ${mq.env}.middleware.mq.basic.info.exchange
+      routing:
+        key:
+          name: ${mq.env}.middleware.mq.basic.info.routing.key
+  dead:
+    queue:
+      name: ${mq.env}.middleware.mq.dead.queue
+    exchange:
+      name: ${mq.env}.middleware.mq.dead.exchange
+    routing:
+      key:
+        name: ${mq.env}.middleware.mq.dead.routing.key
+  producer:
+    exchange:
+      name: ${mq.env}.middleware.mq.producer.exchange
+    routing:
+      key:
+        name: ${mq.env}.middleware.mq.producer.routing.key
+  customer:
+    queue:
+      name: ${mq.env}.middleware.mq.customer.queue
+
+#??mybatis-plus
+mybatis-plus:
+  mapper-locations: mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 开启 httptrace 端点
+  endpoint:
+    httptrace:
+      enabled: true
+
