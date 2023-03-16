@@ -29,12 +29,13 @@ public class MyKafkaConsumer {
 //    @Resource
 //    ElasticsearchMapper elasticsearchMapper;
 
-        @KafkaListener(topics = {"article"})
+        @KafkaListener(topics = {"ecut"})
     public void receiveMessage(ConsumerRecord<String, String> record) {
         if (record.value() == null) {
             log.error("接收数据为空！");
             return;
         }
+            System.out.println("--------------------------------------------------------------"+record.value());
 //        KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(kafkaConfig);
 //        kafkaConsumer.subscribe(Arrays.asList("article"));
 //        // 拉去消息

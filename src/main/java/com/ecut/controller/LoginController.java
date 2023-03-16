@@ -2,6 +2,7 @@ package com.ecut.controller;
 
 
 import cn.hutool.http.HttpResponse;
+import com.ecut.annotation.MyAnnotation;
 import com.ecut.model.LoginDO;
 import com.ecut.service.LoginService;
 import com.ecut.util.CommonResult;
@@ -29,6 +30,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @MyAnnotation
     @PostMapping("/verify")
     public Object loginVerify(@RequestBody LoginDO loginDO, HttpServletRequest request) throws Exception {
 

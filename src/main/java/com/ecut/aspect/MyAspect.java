@@ -3,7 +3,6 @@ package com.ecut.aspect;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,19 +14,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class MyAspect {
-    /**
-     * 定义切点
-     */
-    @Pointcut(value = "execution(* com.ecut.controller.LoginController.loginVerify(..))")
-    public void pointCut(){
 
-    }
     /**
      * 环绕通知
      */
-    @Around(value = "pointCut()")
+    @Around("@annotation(com.ecut.annotation.MyAnnotation)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-
         Object proceed = pjp.proceed();
         System.out.println(proceed);
         return proceed;
